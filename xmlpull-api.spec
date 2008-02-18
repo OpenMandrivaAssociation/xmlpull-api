@@ -35,7 +35,7 @@ Name:                xmlpull-api
 Version:        1.1.4
 Release:        %mkrel 1.0.1
 Epoch:          0
-Summary:        XmlPull v1 API is a simple to use XML pull parsing API 
+Summary:        Simple to use XML pull parsing API 
 License:        Public Domain
 Url:            http://www.xmlpull.org/
 Group:          Development/Java
