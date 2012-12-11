@@ -33,7 +33,7 @@
 
 Name:                xmlpull-api
 Version:        1.1.4
-Release:        %mkrel 1.0.3
+Release:        1.0.4
 Epoch:          0
 Summary:        Simple to use XML pull parsing API 
 License:        Public Domain
@@ -53,7 +53,6 @@ BuildRequires:  java-gcj-compat-devel
 %else
 BuildArch:      noarch
 %endif
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 XmlPull v1 API is a simple to use XML pull parsing API that was
@@ -80,14 +79,12 @@ export CLASSPATH=
 %{ant} javadoc
 
 %install
-%{__rm} -rf %{buildroot}
-
-install -d -m 755 $RPM_BUILD_ROOT%{_javadir}
+install -d -m 755 %{buildroot}%{_javadir}
 install -m 644 build/lib/xmlpull_1_1_4.jar \
-                $RPM_BUILD_ROOT%{_javadir}/%{name}-%{version}.jar
+                %{buildroot}%{_javadir}/%{name}-%{version}.jar
 
 # create unprefixed and unversioned symlinks
-(cd $RPM_BUILD_ROOT%{_javadir}
+(cd %{buildroot}%{_javadir}
 for jar in *-%{version}*; do ln -sf ${jar} ${jar/-%{version}/}; done
 )
 
@@ -95,15 +92,12 @@ for jar in *-%{version}*; do ln -sf ${jar} ${jar/-%{version}/}; done
 #cp *.txt *.html $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 
 %{__mkdir_p} %{buildroot}%{_javadocdir}/%{name}-%{version}
-%{__cp} -a doc/api_impl/* %{buildroot}%{_javadocdir}/%{name}-%{version}
+cp -pr doc/api_impl/* %{buildroot}%{_javadocdir}/%{name}-%{version}
 %{__ln_s} %{name}-%{version} %{buildroot}%{_javadocdir}/%{name}
 
 %if %{gcj_support}
 %{_bindir}/aot-compile-rpm
 %endif
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %if %{gcj_support}
 %post
@@ -129,3 +123,25 @@ rm -rf $RPM_BUILD_ROOT
 %doc %{_javadocdir}/%{name}-%{version}
 %doc %{_javadocdir}/%{name}
 
+
+
+%changelog
+* Mon Sep 21 2009 Thierry Vignaud <tvignaud@mandriva.com> 0:1.1.4-1.0.3mdv2010.0
++ Revision: 446198
+- rebuild
+
+* Fri Mar 06 2009 Antoine Ginies <aginies@mandriva.com> 0:1.1.4-1.0.2mdv2009.1
++ Revision: 350075
+- 2009.1 rebuild
+
+* Mon Feb 18 2008 Thierry Vignaud <tvignaud@mandriva.com> 0:1.1.4-1.0.1mdv2009.0
++ Revision: 170614
+- fix "foobar is blabla" summary (=> "blabla") so that it looks nice in rpmdrake
+
+* Fri Dec 28 2007 David Walluck <walluck@mandriva.org> 0:1.1.4-1.0.1mdv2008.1
++ Revision: 138998
+- import xmlpull-api
+
+
+* Wed May 24 2006 Deepak Bhole <dbhole@redhat.com> 0:1.1.4-1jpp
+- Initial build
