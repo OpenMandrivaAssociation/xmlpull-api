@@ -33,7 +33,7 @@
 
 Name:                xmlpull-api
 Version:        1.1.4
-Release:        1.0.4
+Release:        1.0.5
 Epoch:          0
 Summary:        Simple to use XML pull parsing API 
 License:        Public Domain
