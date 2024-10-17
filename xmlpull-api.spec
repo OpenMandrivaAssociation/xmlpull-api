@@ -37,7 +37,7 @@ Release:        1.0.5
 Epoch:          0
 Summary:        Simple to use XML pull parsing API 
 License:        Public Domain
-Url:            http://www.xmlpull.org/
+Url:            https://www.xmlpull.org/
 Group:          Development/Java
 #Vendor:        JPackage Project
 #Distribution:  JPackage
